@@ -1,3 +1,5 @@
+{{-- このブレードは、layoutsディレクトリ内の、app.blade.phpの中のmainタグ、クラス名はcontainerに表示される部分 --}}
+{{-- app.blade.phpは、ヘッダー、フッターなど、「囲い」部分を作成するbladeという認識でいいのかな？ --}}
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
