@@ -17,7 +17,9 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/dashboard';
+    // ここ、public const HOME = '/';でいいはずなのに、うまく働かないので、web.phpを修正している。
+    // ダッシュボードがきたら、homeが表示されるようにしているので、この後、おかしげなことになるかもしれない。
+    public const HOME = '/';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
