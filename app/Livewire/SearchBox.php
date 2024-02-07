@@ -11,15 +11,9 @@ class SearchBox extends Component
 {
     public $search = '';
 
-    public function updatedSearch()
-    {
-        // dispatchメソッドの呼び出し方を修正し、searchイベントにsearchプロパティの値を含める
-        $this->dispatch('search', ['search' => $this->search]);
-    }
-
     public function update()
     {
-        $this->dispatch('search', ['search' => $this->search]);
+        $this->dispatch('search', search: $this->search);
     }
 
     public function render()

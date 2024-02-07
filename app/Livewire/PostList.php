@@ -8,7 +8,8 @@ use Livewire\Component;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
-use App\Livewire\On;
+// use App\Livewire\On;では検索が機能しなかった。use Livewire\Attributes\On;を追記する必要がある！
+use Livewire\Attributes\On;
 
 
 
@@ -34,9 +35,11 @@ class PostList extends Component
 
     #[On('search')]
     public function updateSearch($search)
-    { 
+    {
         $this->search = $search;
+        $this->resetPage();
     }
+
 
     #[Computed()]
     public function posts()
