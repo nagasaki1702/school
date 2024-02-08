@@ -9,10 +9,11 @@ use Filament\Forms;
 use Filament\Forms\Form;
 // 以下を追加する必要があった。
 use Filament\Forms\Components\TextInput;
-
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+// 以下を追加する必要があった。
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -32,6 +33,9 @@ class CategoryResource extends Resource
                     ->required()->minLength(1)->maxLength(150)
                     // Forms/SetではなくForms/Setでした！
                     ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
+                        if($operation === 'edit') {
+                            return;
+                        }
                         // ここの記載でtitle入力すると自動でslugができる
                         $set('slug', Str::slug($state));
                     }),
@@ -45,8 +49,12 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                //
-            ])
+                TextColumn::make('title')->sortable()->searchable(),
+                TextColumn::make('slug')->sortable()->searchable(),
+                TextColumn::make('text_color')->sortable()->searchable(),
+                TextColumn::make('bg_color')->sortable()->searchable(),
+
+                ])
             ->filters([
                 //
             ])
