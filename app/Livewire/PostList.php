@@ -4,12 +4,11 @@ namespace App\Livewire;
 
 use App\Models\Post;
 use Livewire\Component;
-// use Livewire\Attributes\Computed;を追記する必要がある
-use Livewire\Attributes\Computed;
+use Livewire\Attributes\Computed;// use Livewire\Attributes\Computed;を追記する必要がある
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
-// use App\Livewire\On;では検索が機能しなかった。use Livewire\Attributes\On;を追記する必要がある！
-use Livewire\Attributes\On;
+use Livewire\Attributes\On;// use App\Livewire\On;では検索が機能しなかった。use Livewire\Attributes\On;を追記する必要がある！
+
 
 
 
