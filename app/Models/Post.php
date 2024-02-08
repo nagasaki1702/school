@@ -4,15 +4,16 @@ namespace App\Models;
 
 use App\Models\User;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
-
 
 class Post extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $casts = [
         'published_at' => 'datetime',
