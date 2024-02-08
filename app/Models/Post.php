@@ -53,6 +53,13 @@ class Post extends Model
         $query->where('featured', true);
     }
 
+    public function scopeWithCategory($query, string $category)
+    {
+        $query->whereHas('categories', function ($query) use ($category) {
+            $query->where('slug', $category);
+        });
+    }
+
     // 150文字以上は表示させないよ！
     public function getExcerpt(){
         return Str::limit(strip_tags($this->body), 150);

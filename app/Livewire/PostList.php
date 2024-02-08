@@ -2,15 +2,13 @@
 
 namespace App\Livewire;
 
+use App\Models\Category;
 use App\Models\Post;
 use Livewire\Component;
-use Livewire\Attributes\Computed;// use Livewire\Attributes\Computed;を追記する必要がある
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
-use Livewire\Attributes\On;// use App\Livewire\On;では検索が機能しなかった。use Livewire\Attributes\On;を追記する必要がある！
-
-
-
+use Livewire\Attributes\On;
 
 class PostList extends Component
 {
@@ -20,10 +18,10 @@ class PostList extends Component
     public $sort = 'desc'; 
 
     #[Url()]
-    public $search ='';
+    public $search = '';
 
-    // protected $listeners = ['search' => 'updateSearch'];
-
+    #[Url()]
+    public $category = ''; // カテゴリーのプロパティを追加
 
     public function setSort($sort)
     {
@@ -39,18 +37,25 @@ class PostList extends Component
         $this->resetPage();
     }
 
-
     #[Computed()]
     public function posts()
     {
         return Post::published()
             ->orderBy('published_at', $this->sort)
-            ->where('title', 'like', "%{$this->search}%")
+            ->when($this->category, function ($query) {
+                $query->whereHas('categories', function ($subQuery) {
+                    $subQuery->where('slug', $this->category);
+                });
+            })
+            ->where(function ($query) {
+                $query->where('title', 'like', "%{$this->search}%")
+                    ->orWhere('body', 'like', "%{$this->search}%");
+            })
             ->paginate(3);
     }
 
     public function render()
     {
-        return view('livewire.post-list');
+        return view('livewire.post-list', ['posts' => $this->posts()]);
     }
 }

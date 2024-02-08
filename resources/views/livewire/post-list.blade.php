@@ -1,4 +1,6 @@
-<div class=" px-3 lg:px-7 py-6">
+<!-- resources/views/livewire/post-list.blade.php -->
+
+<div class="px-3 lg:px-7 py-6">
     <div class="flex justify-between items-center border-b border-gray-100">
         <div class="text-gray-600">
             @if ($search)
@@ -15,15 +17,12 @@
         </div>
     </div>
     <div class="py-4">
-        {{-- LaravelのBladeテンプレート内での$thisは、Bladeコンポーネントを指す --}}
-        {{-- Bladeコンポーネントでは、$postというプロパティが定義されています。これをBladeテンプレート内で使用する際には、$thisを使ってアクセス --}}
-        @foreach ($this->posts as $post)
-        {{-- :post="$post" は、変数 $post を子コンポーネントに post という名前のプロパティとして渡すためのBladeの構文 --}}
+        @foreach ($posts as $post)
             <x-posts.post-item :post="$post" />
         @endforeach
     </div>
 
     <div class="my-3">
-        {{ $this->posts->onEachSide(1)->links() }}
+        {{ $posts->onEachSide(1)->links() }}
     </div>
 </div>
