@@ -75,7 +75,7 @@ class Post extends Model
 
 
     // フィーダーで作成したデータのimageが表示されないので。（でも今のとこ、どっちも表示されてないww）
-    public function getThumbnailImage()
+    public function getThumbnailUrl()
     {
         $isUrl = str_contains($this->image, 'http');
         return ($isUrl) ? $this->image : Storage::disk('public')->url($this->image);

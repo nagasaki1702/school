@@ -4,7 +4,7 @@
         <div class="article-thumbnail col-span-4 flex items-center">
             <a href="" >
                 <img class="mw-100 mx-auto rounded-xl"
-                    src="{{ $post->getThumbnailImage() }}"
+                    src="{{ $post->getThumbnailUrl() }}"
                     alt="thumbnail">
             </a>
         </div>
@@ -29,8 +29,9 @@
             <div class="article-actions-bar mt-6 flex items-center justify-between">
                 <div class="flex gap-x-2">
                     @foreach ($post->categories as $category) 
-                        <x-badge :textColor="$category->text_color" :bgColor="$category->bg_color">
-                        {{-- <x-badge textColor="red" bgColor="red"> --}}
+                        <x-badge wire:navigate href="{{ route('posts.index', ['category'=>$category->title]) }}" 
+                            :textColor="$category->text_color" :bgColor="$category->bg_color">
+                            {{-- <x-badge textColor="red" bgColor="red"> --}}
                             {{ $category->title }}
                         </x-badge>
                     @endforeach

@@ -37,6 +37,13 @@ class PostList extends Component
         $this->resetPage();
     }
 
+    public function clearFilters()
+    {
+        $this->search = '';
+        $this->category = '';
+        $this->resetPage();
+    }
+
     #[Computed()]
     public function posts()
     {
@@ -52,6 +59,12 @@ class PostList extends Component
                     ->orWhere('body', 'like', "%{$this->search}%");
             })
             ->paginate(3);
+    }
+
+    #[Computed()]
+    public function activeCategory()
+    {
+        return Category::where('slug', $this->category)->first();
     }
 
     public function render()
