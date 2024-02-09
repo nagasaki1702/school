@@ -27,18 +27,18 @@
                 {{ $post->getExcerpt() }}
             </p>
             <div class="article-actions-bar mt-6 flex items-center justify-between">
-                <div>
-                    <div class="flex items-center space-x-4">
-                        <span class="text-gray-500 text-sm">{{ $post->getReadingTime() }} min read</span>
-                    </div>
-                </div>
+                <div class="flex gap-x-2">
                     @foreach ($post->categories as $category) 
                         <x-badge :textColor="$category->text_color" :bgColor="$category->bg_color">
                         {{-- <x-badge textColor="red" bgColor="red"> --}}
                             {{ $category->title }}
                         </x-badge>
                     @endforeach
-        
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-500 text-sm">{{ $post->getReadingTime() }} min read</span>
+                    </div>
+                </div>
+
                 <div>
                     <a class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
