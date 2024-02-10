@@ -3,10 +3,7 @@
     <div class="topics flex flex-wrap justify-start gap-2">
 
         @foreach ($categories as $category) 
-            <x-badge wire:navigate href="{{ route('posts.index', ['category'=>$category->slug]) }}" :textColor="$category->text_color" :bgColor="$category->bg_color">
-            {{-- <x-badge textColor="red" bgColor="red"> --}}
-                {{ $category->title }}
-            </x-badge>
+            <x-posts.category-badge :category="$category" />
         @endforeach
 
     </div>

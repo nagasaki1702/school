@@ -21,6 +21,9 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::get('/blog', [PostController::class,'index'])->name('posts.index');
 
+Route::get('/blog/{post:slug}', [PostController::class,'show'])->name('posts.show');
+
+
 // Livewire コンポーネントを livewire メソッドを使用して追加
 // Route::livewire('/posts', 'post-list')->name('posts.list');
 
