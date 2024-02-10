@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Category;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -39,6 +40,10 @@ class Post extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function likes(){
+        return $this->belongsToMany(User::class, 'post_like')->withTimestamps();
     }
 
 // scopeってつけたら、コントローラーで使えるんじゃ！
